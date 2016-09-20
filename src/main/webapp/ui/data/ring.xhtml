@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
+        <style type="text/css">
+            .image-ring .ui-ring-item {
+                border:0 none;
+            }
+
+            .image-ring .ui-ring-item img {
+				width: 100%;
+			}
+            
+            .ui-ring button {
+                font-size: 1em !important;
+            }
+            
+            .value {
+                font-weight: bold;
+            }
+        </style>
+    </ui:define>
+    
+    <ui:define name="title">
+        Recuerdos
+    </ui:define>
+
+    <ui:define name="description">
+        Una pequeña reseña que te trasladará a ese momento especial que vivimos juntos.
+    </ui:define>
+
+    <ui:define name="implementation">
+
+        <h:form id="form">
+            
+            <p:ring id="basic" value="#{ringView.recuerdos}" var="recuerdo">
+                <p:outputPanel style="text-align: center;" layout="block">
+                    #{recuerdo.nombre}
+                    <br />
+                    <p:commandButton update=":form:carDetail" icon="main/images/zoom.svg" title="Detallar" oncomplete="PF('carDialog').show();">
+                        <f:setPropertyActionListener value="#{recuerdo}" target="#{ringView.selectedRecuerdo}" />
+                    </p:commandButton>
+                </p:outputPanel>
+            </p:ring>
+            <script type="text/javascript">
+                    console.warn("#{ringView.recuerdos}")
+            </script>
+            <p:dialog header="Recuerdo..." widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="270">
+                <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
+                    <p:panelGrid  columns="2" rendered="#{not empty ringView.selectedRecuerdo}" columnClasses="value">
+                        <f:facet name="header">
+                        </f:facet>
+                        
+                        <h:outputText value="Recuerdo:" />
+                        <h:outputText value="#{ringView.selectedRecuerdo.nombre}" />
+
+                        <h:outputText value="Fecha Referencial:" />
+                        <h:outputText value="#{ringView.selectedRecuerdo.fechaRecuerdo}" />
+                         <h:outputText value="Lugar: " />
+                         <h:outputText value="#{ringView.selectedRecuerdo.lugarRecuerdo}" />
+                        <h:outputText value="Breve Descripción: " />
+                        <h:outputText value="#{ringView.selectedRecuerdo.detalleRecuerdo}" />
+
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
+    </ui:define>
+
+
+</ui:composition>
