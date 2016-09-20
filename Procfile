@@ -1,1 +1,1 @@
-web:    target/ProyectoVacacionesDanny/index.xhtml
+web:    target/ProyectoVacacionesDanny.war
