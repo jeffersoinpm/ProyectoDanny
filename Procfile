@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar webapprunner/webapp-runner.jar --port $PORT target/ProyectoVacacionesDanny-1.0.0.war
+web:    java $JAVA_OPTS -jar webapprunner/jetty-runner.jar --port $PORT target/ProyectoVacacionesDanny-1.0.0.war
