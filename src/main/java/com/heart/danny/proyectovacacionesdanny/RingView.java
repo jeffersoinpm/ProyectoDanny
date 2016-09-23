@@ -6,7 +6,10 @@
 package com.heart.danny.proyectovacacionesdanny;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,9 +20,21 @@ public class RingView implements Serializable {
     
    private List<Recuerdo> lstRecuerdos;
     private Recuerdo selectedRecuerdo;
+    private long dias=(Calendar.getInstance().getTime().getTime()-new Date(2016, 02, 21).getTime())/ (1000 * 60 * 60 * 24);
+
+    public long getDias() {
+        return dias;
+    }
      
     @PostConstruct
     public void init() {
+        Date fechaActual=Calendar.getInstance().getTime();
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(2016, 02, 21);
+        Date fechaInicial=calendar.getTime();
+        long diferenciaEnms = fechaActual.getTime()-fechaInicial.getTime();
+        dias = diferenciaEnms / (1000 * 60 * 60 * 24);
+        System.out.println("dias:"+dias);
         lstRecuerdos = new ArrayList<Recuerdo>();
          
         lstRecuerdos.add(new Recuerdo("1er Cine", "26-02-2016", "Supercines-Foch","El inicio talvez, porque no ir?, mientras Jefferson pensaba que iba"
@@ -64,6 +79,7 @@ public class RingView implements Serializable {
     public List<Recuerdo> getRecuerdos() {
         return lstRecuerdos;
     }
+    
  
     public void setRecuerdos(List<Recuerdo> cars) {
         this.lstRecuerdos = cars;
