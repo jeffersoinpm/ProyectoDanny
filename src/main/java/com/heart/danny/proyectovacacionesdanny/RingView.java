@@ -6,7 +6,6 @@
 package com.heart.danny.proyectovacacionesdanny;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,39 +13,37 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-
-@ManagedBean(name="ringView")
+@ManagedBean(name = "ringView")
 public class RingView implements Serializable {
-    
-   private List<Recuerdo> lstRecuerdos;
+
+    private List<Recuerdo> lstRecuerdos;
     private Recuerdo selectedRecuerdo;
-    private long dias=(Calendar.getInstance().getTime().getTime()-new Date(2016, 02, 21).getTime())/ (1000 * 60 * 60 * 24);
+    private long dias = (Calendar.getInstance().getTime().getTime() - new Date(2016, 02, 21).getTime()) / (1000 * 60 * 60 * 24);
 
     public long getDias() {
         return dias;
     }
-     
+
     @PostConstruct
     public void init() {
-        Date fechaActual=Calendar.getInstance().getTime();
-        Calendar calendar=Calendar.getInstance();
+        Date fechaActual = Calendar.getInstance().getTime();
+        Calendar calendar = Calendar.getInstance();
         calendar.set(2016, 02, 21);
-        Date fechaInicial=calendar.getTime();
-        long diferenciaEnms = fechaActual.getTime()-fechaInicial.getTime();
+        Date fechaInicial = calendar.getTime();
+        long diferenciaEnms = fechaActual.getTime() - fechaInicial.getTime();
         dias = diferenciaEnms / (1000 * 60 * 60 * 24);
-        System.out.println("dias:"+dias);
         lstRecuerdos = new ArrayList<Recuerdo>();
-         
-        lstRecuerdos.add(new Recuerdo("1er Cine", "26-02-2016", "Supercines-Foch","El inicio talvez, porque no ir?, mientras Jefferson pensaba que iba"
+
+        lstRecuerdos.add(new Recuerdo("1er Cine", "26-02-2016", "Supercines-Foch", "El inicio talvez, porque no ir?, mientras Jefferson pensaba que iba"
                 + " a cargar el arpa, y tu lo hiciste sentir importante, la primera vez que caminaron de la mano..."));
-        lstRecuerdos.add(new Recuerdo("Abrazo", "15-03-2016", "Aula 508","Molestando con la pansita de Jefferson, que por cierto no ha crecido jeje"
+        lstRecuerdos.add(new Recuerdo("Abrazo", "15-03-2016", "Aula 508", "Molestando con la pansita de Jefferson, que por cierto no ha crecido jeje"
                 + " a él le nació abrazarte, y lo aceptaste..., en la noche aclaraste que no eran ideas de cada uno..."));
-        lstRecuerdos.add(new Recuerdo("¿Quién te gusta?", "16-03-2016", "Rock and Beef","Tipo 8pm , las preguntas comienzan"
+        lstRecuerdos.add(new Recuerdo("¿Quién te gusta?", "16-03-2016", "Rock and Beef", "Tipo 8pm , las preguntas comienzan"
                 + " a tomar fuerza, y le preguntan a Jefferson, ¿Del grupo de amigos con quién quisieras tener una relación?, la respuesta "
                 + "contundente, con Danny..."));
-        lstRecuerdos.add(new Recuerdo("Ascensor", "18-03-2016", "Ascensor Sistemas","Jefferson se dirigió al ascensor,"
+        lstRecuerdos.add(new Recuerdo("Ascensor", "18-03-2016", "Ascensor Sistemas", "Jefferson se dirigió al ascensor,"
                 + " lo abordaste, le quedaste viendo, el posible plan que tenias, se desvaneció..., y fue el mejor viaje en ascensor de su vida..."));
-        lstRecuerdos.add(new Recuerdo("El Inicio", "21-03-2016", "Parque la Carolina","Una tarde que empieza con helado siempre sera excelente,"
+        lstRecuerdos.add(new Recuerdo("El Inicio", "21-03-2016", "Parque la Carolina", "Una tarde que empieza con helado siempre sera excelente,"
                 + " parque..., el tiempo voló..., mientras caminabas con él al bus, te frenó y te dijo Danny quieres ser mi novia?, no lo dudaste "
                 + " y esta historia comenzó..."));
         lstRecuerdos.add(new Recuerdo("1er Mes", "21-04-2016", "Av. 12 de Octubre", "Un mes..., él se sentía igual de nervioso"
@@ -73,22 +70,21 @@ public class RingView implements Serializable {
                 + " y todo empezo la misa transcrurrio, la fiesta de la misma manera, se sentía bien, kevin lo abordo, le aclaró que lo esta vigilando"
                 + " y le advirtio que debe cuidarte y no hacerte daño, luego la noche se puso mas densa, fueron a tu casa..., comenzó a tomar con tu padre"
                 + " no quería fallar, escucho historias, anecdotas y fue a dormir..."));
-        
+
     }
- 
+
     public List<Recuerdo> getRecuerdos() {
         return lstRecuerdos;
     }
-    
- 
+
     public void setRecuerdos(List<Recuerdo> cars) {
         this.lstRecuerdos = cars;
     }
- 
+
     public Recuerdo getSelectedRecuerdo() {
         return selectedRecuerdo;
     }
- 
+
     public void setSelectedRecuerdo(Recuerdo selectedRecuerdo) {
         this.selectedRecuerdo = selectedRecuerdo;
     }
